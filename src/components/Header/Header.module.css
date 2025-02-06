@@ -1,0 +1,332 @@
+.headerContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #ffffff;
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    transition: all 0.3s ease;
+    padding: 20px 40px;
+}
+
+.innerHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1440px;
+    transition: all 0.3s ease;
+}
+
+.logoWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.rightSection {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    position: relative;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav a:hover {
+    color: var(--accent);
+}
+
+.ctaWrapper {
+    margin-left: 2rem;
+}
+
+.ctaButton {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #6473e9;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.ctaButton:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.logo {
+    height: 40px;
+    transition: opacity 0.2s ease;
+}
+
+.logo:hover {
+    opacity: 0.8;
+}
+
+/* Mobile menu */
+.hamburgerIcon {
+    display: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    position: relative;
+    margin-left: 16px;
+    padding: 0;
+}
+
+.hamburgerIcon span {
+    display: block;
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: #6473e9;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburgerIcon span:nth-child(1) {
+    top: 4px;
+}
+
+.hamburgerIcon span:nth-child(2) {
+    top: 11px;
+}
+
+.hamburgerIcon span:nth-child(3) {
+    top: 18px;
+}
+
+/* Hamburger animation for open state */
+.hamburgerIcon.open span:nth-child(1) {
+    transform: rotate(45deg) translate(3px, 5px);
+}
+
+.hamburgerIcon.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburgerIcon.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -7px);
+}
+
+@media (max-width: 768px) {
+    .hamburgerIcon {
+        display: block;
+    }
+
+    .rightSection {
+        display: none;
+    }
+
+    .logoWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobileMenu {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: #ffffffF0;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 16px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+    }
+
+    .mobileMenu .navItem > a,
+    .mobileNavLink {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 35px;
+        color: var(--text);
+        text-decoration: none;
+        font-weight: 500;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .mobileNavLink span {
+        flex-shrink: 0;
+    }
+
+    .mobileArrow {
+        width: 8px;
+        height: 8px;
+        border-right: 2px solid currentColor;
+        border-bottom: 2px solid currentColor;
+        transform: rotate(45deg);
+        transition: transform 0.2s ease;
+    }
+
+    .mobileNavLink.active .mobileArrow {
+        transform: rotate(-135deg);
+    }
+
+    .mobileMenu .megaMenuList {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .mobileMenu .megaMenuList.active {
+        max-height: 500px; /* Adjust based on your content */
+    }
+
+    .mobileMenu .megaMenuList a {
+        display: block;
+        padding: 12px;
+        color: var(--text);
+        text-decoration: none;
+        font-size: 0.9rem;
+        opacity: 0.85;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        background: rgba(100, 115, 233, 0.05);
+    }
+
+    .mobileMenu .megaMenuList a:hover {
+        background: rgba(100, 115, 233, 0.1);
+        color: var(--accent);
+        opacity: 1;
+    }
+
+    .mobileMenu .navItem > a:hover,
+    .mobileNavLink:hover {
+        background: rgba(100, 115, 233, 0.1);
+        color: var(--accent);
+    }
+}
+
+@media (max-width: 960px) {
+    .headerSpacer {
+        height: 64px;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .hamburgerIcon {
+        display: flex;
+    }
+
+    .mobileLogo {
+        height: 30px;
+    }
+}
+
+.headerSpacer {
+    height: 80px;
+    width: 100%;
+}
+
+/* Dropdown arrow styles */
+.navItem.hasDropdown > a {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navItem.hasDropdown > a::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 8px;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.navItem.hasDropdown:hover > a::after {
+    transform: rotate(225deg);
+}
+
+/* Mega menu styles */
+.megaMenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 16px;
+    min-width: 200px;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+}
+
+.navItem.hasDropdown:hover .megaMenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.megaMenuList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.megaMenuList a {
+    padding: 8px 12px;
+    color: var(--text);
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.megaMenuList a:hover {
+    background: rgba(100, 115, 233, 0.1);
+    color: var(--accent);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

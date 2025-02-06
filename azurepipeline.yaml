@@ -1,0 +1,45 @@
+trigger:
+  - master
+
+pool:
+  vmImage: "ubuntu latest"
+
+steps:
+
+  - task: UseNode@1
+    inputs:
+      version: '20.x'
+      checkLatest: true
+    displayName: 'Install Node.js'
+
+  - task: DownloadSecureFile@1
+    inputs:
+      secureFile: 'builderIO_dev_env'
+
+  - task: CmdLine@2
+    displayName: "copy env file"
+    inputs:
+      script: cp '$(Agent.TempDirectory)'/builderIO_dev_env '$(Build.SourcesDirectory)'/.env
+
+  - task: Npm@1
+    displayName: "npm install"
+    inputs:
+      command: 'custom'
+      customCommand: 'install --force'
+
+  - task: Npm@1
+    displayName: npm run build
+    inputs:
+      command: custom
+      workingDir: .
+      verbose: false
+      customCommand: run build
+
+  - task: CopyFiles@2
+    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+    inputs:
+      SourceFolder: $(Build.SourcesDirectory)/.next
+      TargetFolder: $(Build.ArtifactStagingDirectory)
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'

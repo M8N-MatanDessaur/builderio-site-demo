@@ -1,0 +1,107 @@
+/**
+ * @file brand.css
+ * @description Unified brand design system tokens
+ */
+
+:root {
+  /* === Colors === */
+  /* Brand Colors */
+  --primary: #10106a; /* Body text color */
+  --secondary: #2323eb; /* Heading */
+  --accent: #6473e9;
+  --background-section: #f5f5ff; /* Background section color */
+
+  /* Feedback Colors */
+  --success: #57a773;
+  --warning: #f19953;
+  --error: #a40000;
+  --validation-error: #d86464;
+  --validation-success: #94cd98;
+
+  /* Neutral Colors */
+  --black: #2f2f2f;
+  --grey-dark: #868686;
+  --grey: #dcdcdc;
+  --grey-light: #f8f6f3;
+  --white: #ffffff;
+  --color-cararra: #edebe8;
+  --color-mystic: #d9e8e9;
+  --color-jetstream: #c0dad6;
+
+  /* === Typography === */
+  /* Font Families */
+  --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Manrope', sans-serif;
+
+  /* Font Sizes - Minor Third Scale */
+  --font-base: 0.8;
+
+  --font-size-base: 1rem;
+  --font-size-small: 0.833rem;
+  --font-size-smaller: 0.694rem;
+  --font-size-large: 1.2rem;
+  --font-size-larger: 1.44rem;
+  --font-size-largest: 1.728rem;
+
+  /* Font Sizes - Modular Scale */
+  --font-size-h1: calc(3.5rem * var(--font-base));
+  --font-size-h2: calc(2.917rem * var(--font-base));
+  --font-size-h3: calc(2.431rem * var(--font-base));
+  --font-size-h4: calc(2.027rem * var(--font-base));
+  --font-size-h5: calc(1.688rem * var(--font-base));
+  --font-size-h6: calc(1.407rem * var(--font-base));
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-smallest: 1.2;
+  --line-height-small: 1.5;
+  --line-height-base: 1.6;
+  --line-height-large: 1.8;
+
+  /* === Layout === */
+  --content-max-width: 1440px;
+  --gutter: 15px;
+  --content-padding: 15px;
+  --section-horizontal-padding: 40px;
+  --section-vertical-padding: 20px;
+
+  /* === Components === */
+  /* Spacing */
+  --vertical-margin: 20px;
+  --horizontal-margin: 20px;
+  --button-vertical-padding: 16px;
+  --button-horizontal-padding: 48px;
+  --card-padding: 20px;
+   --input-vertical-padding: 16px;
+   --input-horizontal-padding: 48px;
+  --form-field-gap: 18px;
+
+  /* Border Radius */
+  --border-radius-default: 5px;
+  --border-radius-large: 15px;
+
+  /* Z-Index Scale */
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-dropdown: 1000;
+  --z-modal: 2000;
+  --z-tooltip: 3000;
+  --z-overlay: 4000;
+  --z-max: 9999;
+
+  /* Shadows */
+  --shadow-small: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-large: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-base: 0.618;
+  }
+}
