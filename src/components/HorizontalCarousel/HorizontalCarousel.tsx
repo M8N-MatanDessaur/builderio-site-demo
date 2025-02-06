@@ -44,6 +44,9 @@ export function HorizontalCarousel({ slides = [], autoplayInterval = 5000 }: Hor
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const autoplayTimeoutRef = useRef<NodeJS.Timeout>();
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
+  const minSwipeDistance = 50; // minimum distance for swipe
 
   const goToSlide = useCallback((index: number) => {
     if (isTransitioning || index === activeSlide) return;
@@ -60,6 +63,39 @@ export function HorizontalCarousel({ slides = [], autoplayInterval = 5000 }: Hor
     const nextIndex = (activeSlide + 1) % slides.length;
     goToSlide(nextIndex);
   }, [activeSlide, slides.length, goToSlide]);
+
+  const goToPrevSlide = useCallback(() => {
+    if (slides.length <= 1) return;
+    const prevIndex = (activeSlide - 1 + slides.length) % slides.length;
+    goToSlide(prevIndex);
+  }, [activeSlide, slides.length, goToSlide]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    setIsPaused(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const swipeDistance = touchEndX.current - touchStartX.current;
+    
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        // Swiped right - go to previous slide
+        goToPrevSlide();
+      } else {
+        // Swiped left - go to next slide
+        goToNextSlide();
+      }
+    }
+    
+    setIsPaused(false);
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
 
   // Handle autoplay
   useEffect(() => {
@@ -83,6 +119,9 @@ export function HorizontalCarousel({ slides = [], autoplayInterval = 5000 }: Hor
       className={styles.carouselContainer}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       <div className={styles.slidesContainer}>
         {slides.map((slide, index) => (

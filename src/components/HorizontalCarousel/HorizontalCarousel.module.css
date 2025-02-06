@@ -2,12 +2,17 @@
   width: 100%;
   position: relative;
   height: 650px;
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom;
 }
 
 .slidesContainer {
   position: relative;
   width: 100%;
   height: 100%;
+  transform: translateZ(0); /* Hardware acceleration */
+  -webkit-backface-visibility: hidden; /* Prevent flickering */
+  backface-visibility: hidden;
 }
 
 .carouselTrack {
@@ -30,8 +35,9 @@
   width: 100%;
   height: 100%;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+  transform: translateX(100%);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  will-change: transform, opacity;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -42,7 +48,16 @@
 
 .activeSlide {
   opacity: 1;
-  visibility: visible;
+  transform: translateX(0);
+  z-index: 1;
+}
+
+.slide.activeSlide ~ .slide {
+  transform: translateX(100%);
+}
+
+.slide:not(.activeSlide) {
+  pointer-events: none;
 }
 
 .slide[data-has-image="true"]::before {
@@ -228,6 +243,7 @@
 
 @media (max-width: 480px) {
   .slide {
+    padding: 5px;
     padding-bottom: calc(var(--vertical-margin) * 3);
   }
 
