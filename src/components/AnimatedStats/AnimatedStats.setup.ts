@@ -12,6 +12,7 @@ export interface StatItem extends SeoProps {
 export interface AnimatedStatsProps extends CommonStyleProps {
   stats?: StatItem[];
   labelColor?: string;
+  numberColor?: string;
   gridAriaLabel?: string;
 }
 
