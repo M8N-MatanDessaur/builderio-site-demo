@@ -5,6 +5,7 @@ import './components/HorizontalCarousel/HorizontalCarousel.registry';
 import './components/AnimatedStats/AnimatedStats.registry';
 import './components/FeaturesGrid/FeaturesGrid.registry';
 import './components/TestimonialGrid/TestimonialGrid.registry';
+import './components/CTABanner/CTABanner.registry';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 

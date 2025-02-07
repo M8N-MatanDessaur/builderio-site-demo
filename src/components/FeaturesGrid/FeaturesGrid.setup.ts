@@ -17,6 +17,8 @@ export interface FeaturesGridProps extends CommonComponentProps {
   features?: Feature[];
   title?: string;
   subtitle?: string;
+  headingColor?: string;
+  subtitleColor?: string;
   gridAriaLabel?: string;
 }
 
@@ -58,11 +60,10 @@ export const defaultFeatures: Feature[] = [
 export const defaultProps = {
   features: defaultFeatures,
   backgroundColor: '#ffffff',
-  textColor: '#000000',
-  accentColor: '#007AFF',
-  title: 'Why Choose Us',
-  subtitle: 'Discover what makes us different',
-  ariaLabel: 'Features section',
-  description: 'Explore the key features that make our platform stand out',
-  gridAriaLabel: 'Features grid'
+  textColor: 'var(--primary)',
+  accentColor: 'var(--accent)',
+  headingColor: 'var(--secondary)',
+  subtitleColor: 'var(--primary)',
+  title: 'Our Key Features',
+  subtitle: 'Discover what makes us different'
 } as const;

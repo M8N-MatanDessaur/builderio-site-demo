@@ -14,8 +14,11 @@ export interface TestimonialGridProps extends CommonComponentProps {
   testimonials?: Testimonial[];
   title?: string;
   subtitle?: string;
+  headingColor?: string;
+  subtitleColor?: string;
   itemsPerPage?: number;
   loadMoreAriaLabel?: string;
+  className?: string;
 }
 
 export const defaultTestimonials: Testimonial[] = [
@@ -95,14 +98,14 @@ export const defaultTestimonials: Testimonial[] = [
 
 export const defaultProps = {
   testimonials: defaultTestimonials,
-  backgroundColor: '#ffffff',
-  textColor: '#000000',
-  accentColor: '#007AFF',
-  title: 'What Our Clients Say',
-  subtitle: 'Trusted by thousands of satisfied customers worldwide',
+  backgroundColor: "#ffffff",
+  textColor: "var(--primary)",
+  accentColor: "var(--accent)",
+  headingColor: "var(--secondary)",
+  subtitleColor: "var(--text-muted)",
+  title: "What Our Customers Say",
+  subtitle: "Don't just take our word for it - hear from our satisfied customers about their experiences.",
   itemsPerPage: 6,
-  className: '',
-  ariaLabel: 'Client testimonials section',
-  description: 'Read what our clients have to say about their experience with our platform',
-  loadMoreAriaLabel: 'Load more testimonials'
+  className: "",
+  loadMoreAriaLabel: "Load more testimonials"
 } as const;

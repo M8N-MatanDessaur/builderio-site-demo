@@ -64,6 +64,18 @@ Builder.registerComponent(TestimonialGrid, {
       defaultValue: 'Trusted by thousands of satisfied customers worldwide',
     },
     {
+      name: 'headingColor',
+      type: 'color',
+      defaultValue: 'var(--secondary)',
+      helperText: 'Color of the main heading'
+    },
+    {
+      name: 'subtitleColor',
+      type: 'color',
+      defaultValue: 'var(--primary)',
+      helperText: 'Color of the subtitle text'
+    },
+    {
       name: 'itemsPerPage',
       type: 'number',
       defaultValue: 6,

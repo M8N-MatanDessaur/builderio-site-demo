@@ -36,6 +36,8 @@ export function FeaturesGrid({
   backgroundColor = defaultProps.backgroundColor,
   textColor = defaultProps.textColor,
   accentColor = defaultProps.accentColor,
+  headingColor = defaultProps.headingColor,
+  subtitleColor = defaultProps.subtitleColor,
   title = defaultProps.title,
   subtitle = defaultProps.subtitle
 }: FeaturesGridProps) {
@@ -72,18 +74,22 @@ export function FeaturesGrid({
       ref={gridRef}
     >
       <div className={styles.header}>
-        <h2 
-          className={styles.title}
-          style={{ color: textColor }}
-        >
-          {title}
-        </h2>
-        <p 
-          className={styles.subtitle}
-          style={{ color: textColor }}
-        >
-          {subtitle}
-        </p>
+        {title && (
+          <h2 
+            className={styles.title}
+            style={{ color: headingColor }}
+          >
+            {title}
+          </h2>
+        )}
+        {subtitle && (
+          <p 
+            className={styles.subtitle}
+            style={{ color: subtitleColor }}
+          >
+            {subtitle}
+          </p>
+        )}
       </div>
       
       <div className={`${styles.grid} ${isVisible ? styles.visible : ''}`}>

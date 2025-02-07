@@ -88,5 +88,17 @@ Builder.registerComponent(FeaturesGrid, {
       type: 'string',
       defaultValue: 'Discover what makes us different',
     },
+    {
+      name: 'headingColor',
+      type: 'color',
+      defaultValue: 'var(--secondary)',
+      helperText: 'Color of the main heading'
+    },
+    {
+      name: 'subtitleColor',
+      type: 'color',
+      defaultValue: 'var(--primary)',
+      helperText: 'Color of the subtitle text'
+    },
   ],
 });
