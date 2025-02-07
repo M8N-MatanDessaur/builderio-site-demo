@@ -1,25 +1,7 @@
 import React, { useState } from 'react';
 import styles from './TestimonialGrid.module.css';
 import { useInView } from '../../hooks/useInView';
-
-interface Testimonial {
-  title: string;
-  text: string;
-  author: string;
-  rating: number;
-  imageUrl?: string;
-}
-
-interface TestimonialGridProps {
-  testimonials?: Testimonial[];
-  backgroundColor?: string;
-  textColor?: string;
-  accentColor?: string;
-  title?: string;
-  subtitle?: string;
-  itemsPerPage?: number;
-  className?: string;
-}
+import { Testimonial, TestimonialGridProps, defaultProps } from './TestimonialGrid.setup';
 
 const StarIcon = () => (
   <svg className={styles.star} viewBox="0 0 20 20" fill="currentColor">
@@ -73,14 +55,14 @@ const defaultTestimonials: Testimonial[] = [
 ];
 
 export function TestimonialGrid({
-  testimonials = defaultTestimonials,
-  backgroundColor = '#ffffff',
-  textColor = '#000000',
-  accentColor = '#007AFF',
-  title = 'What Our Clients Say',
-  subtitle = 'Trusted by thousands of satisfied customers worldwide',
-  itemsPerPage = 6,
-  className = ''
+  testimonials = defaultProps.testimonials,
+  backgroundColor = defaultProps.backgroundColor,
+  textColor = defaultProps.textColor,
+  accentColor = defaultProps.accentColor,
+  title = defaultProps.title,
+  subtitle = defaultProps.subtitle,
+  itemsPerPage = defaultProps.itemsPerPage,
+  className = defaultProps.className
 }: TestimonialGridProps) {
   const [visibleItems, setVisibleItems] = useState(itemsPerPage);
   const hasMore = testimonials.length > visibleItems;

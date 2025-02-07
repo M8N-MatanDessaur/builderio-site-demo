@@ -1,28 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import styles from './AnimatedStats.module.css';
 import { useInView } from '../../hooks/useInView';
+import { StatItem, AnimatedStatsProps, AnimatedNumberProps, defaultProps } from './AnimatedStats.setup';
 
-interface StatItem {
-  number: number;
-  label: string;
-  suffix?: string;
-  prefix?: string;
-  color?: string;
-}
-
-interface AnimatedStatsProps {
-  stats?: StatItem[];
-  backgroundColor?: string;
-  numberColor?: string;
-  labelColor?: string;
-}
-
-const AnimatedNumber = ({ value, prefix, suffix, color }: { 
-  value: number;
-  prefix?: string;
-  suffix?: string;
-  color?: string;
-}) => {
+const AnimatedNumber = ({ value, prefix, suffix, color }: AnimatedNumberProps) => {
   const [displayValue, setDisplayValue] = useState(0);
   const [ref, isInView] = useInView({ threshold: 0.3, triggerOnce: true });
 
@@ -56,10 +37,10 @@ const AnimatedNumber = ({ value, prefix, suffix, color }: {
 };
 
 export function AnimatedStats({ 
-  stats = [], 
-  backgroundColor = '#ffffff',
-  numberColor = '#0070f3', // Same blue as other components
-  labelColor = '#666666'
+  stats = defaultProps.stats, 
+  backgroundColor = defaultProps.backgroundColor,
+  numberColor = defaultProps.numberColor,
+  labelColor = defaultProps.labelColor
 }: AnimatedStatsProps) {
   const [containerRef, isInView] = useInView({ threshold: 0.3 });
 

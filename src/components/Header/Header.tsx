@@ -3,12 +3,7 @@ import React, { useState } from "react";
 import styles from "./Header.module.css";
 import Link from "next/link";
 import useBuilderData from "@/hooks/useBuilderData";
-
-interface NavigationItem {
-  link: string;
-  url: string;
-  childlink?: NavigationItem[];
-}
+import { NavigationItem } from "./Header.setup";
 
 function Header() {
   const [activeMenu, setActiveMenu] = useState<NavigationItem | null>(null);

@@ -9,13 +9,11 @@
 // with a 404 status code.
 
 "use client";
-import { ComponentProps } from "react";
 import { BuilderComponent, useIsPreviewing } from "@builder.io/react";
 import { builder } from "@builder.io/sdk";
 import DefaultErrorPage from "next/error";
 import "../builder-registry";
-
-type BuilderPageProps = ComponentProps<typeof BuilderComponent>;
+import { BuilderPageProps } from "./builder.setup";
 
 // Builder Public API Key set in .env file
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);

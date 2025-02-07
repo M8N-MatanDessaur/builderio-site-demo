@@ -1,45 +1,11 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './HorizontalCarousel.module.css';
+import { HorizontalCarouselProps, defaultProps } from './HorizontalCarousel.setup';
 
-interface SlideBackground {
-  image?: string;
-  imagePosition?: string;
-  color?: string;
-}
-
-interface TextContent {
-  text: string;
-  color: string;
-}
-
-interface RichTextContent {
-  text: string;
-  color: string;
-}
-
-interface Button {
-  buttonText: string;
-  url: string;
-  backgroundColor: string;
-  textColor: string;
-  borderColor: string;
-}
-
-interface Slide {
-  preTitle?: TextContent;
-  title?: TextContent;
-  textContent?: RichTextContent;
-  primaryButton?: Button;
-  secondaryButton?: Button;
-  background?: SlideBackground;
-}
-
-interface HorizontalCarouselProps {
-  slides?: Slide[];
-  autoplayInterval?: number;
-}
-
-export function HorizontalCarousel({ slides = [], autoplayInterval = 5000 }: HorizontalCarouselProps) {
+export function HorizontalCarousel({ 
+  slides = defaultProps.slides, 
+  autoplayInterval = defaultProps.autoplayInterval 
+}: HorizontalCarouselProps) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isPaused, setIsPaused] = useState(false);

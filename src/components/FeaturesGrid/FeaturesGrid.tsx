@@ -1,23 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import styles from './FeaturesGrid.module.css';
-
-interface Feature {
-  icon: 'rocket' | 'brush' | 'tools' | 'device';
-  title: string;
-  description: string;
-  color?: string;
-  link?: string;
-}
-
-interface FeaturesGridProps {
-  features?: Feature[];
-  backgroundColor?: string;
-  textColor?: string;
-  accentColor?: string;
-  title?: string;
-  subtitle?: string;
-}
+import { Feature, FeaturesGridProps, defaultProps } from './FeaturesGrid.setup';
 
 const Icons = {
   rocket: (
@@ -47,40 +31,13 @@ const Icons = {
   ),
 };
 
-const defaultFeatures: Feature[] = [
-  {
-    icon: 'rocket',
-    title: 'Lightning Fast',
-    description: 'Optimized for speed and performance across all devices',
-    link: '/performance',
-  },
-  {
-    icon: 'brush',
-    title: 'Beautiful Design',
-    description: 'Stunning visuals that capture attention and engage users',
-    link: '/design',
-  },
-  {
-    icon: 'tools',
-    title: 'Easy to Use',
-    description: 'Intuitive interface that anyone can master quickly',
-    link: '/usability',
-  },
-  {
-    icon: 'device',
-    title: 'Responsive',
-    description: 'Perfect experience on any screen size or device',
-    link: '/responsive',
-  },
-];
-
 export function FeaturesGrid({
-  features = defaultFeatures,
-  backgroundColor = '#ffffff',
-  textColor = '#000000',
-  accentColor = '#007AFF',
-  title = 'Why Choose Us',
-  subtitle = 'Discover what makes us different'
+  features = defaultProps.features,
+  backgroundColor = defaultProps.backgroundColor,
+  textColor = defaultProps.textColor,
+  accentColor = defaultProps.accentColor,
+  title = defaultProps.title,
+  subtitle = defaultProps.subtitle
 }: FeaturesGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
