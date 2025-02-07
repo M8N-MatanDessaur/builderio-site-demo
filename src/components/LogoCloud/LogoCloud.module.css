@@ -1,0 +1,145 @@
+.container {
+  padding: 4rem 2rem;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.header.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  line-height: 1.75;
+}
+
+.logoGrid {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.container[data-logo-count="1"] .logoGrid,
+.container[data-logo-count="2"] .logoGrid {
+  max-width: 500px;
+  gap: 3rem;
+}
+
+.container[data-logo-count="3"] .logoGrid,
+.container[data-logo-count="4"] .logoGrid {
+  gap: 5rem;
+}
+
+.container[data-logo-count="5"] .logoGrid,
+.container[data-logo-count="6"] .logoGrid {
+  max-width: 900px;
+}
+
+.logoWrapper {
+  flex: 0 1 auto;
+  min-width: 100px;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease-out;
+  transition-delay: var(--delay);
+}
+
+.logoGrid.visible .logoWrapper {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.logo {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.logo.grayscale {
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: filter 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.logoWrapper:hover .logo.grayscale {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+.logoLink {
+  display: block;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logoLink:hover {
+  transform: translateY(-5px);
+}
+
+.logoLink:hover .logo.grayscale {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 3rem 1rem;
+  }
+
+  .title {
+    font-size: 1.875rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .logoGrid {
+    gap: 1.5rem;
+  }
+
+  .logoWrapper {
+    min-width: 80px;
+    max-width: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+
+  .logoGrid {
+    gap: 1rem;
+  }
+}
