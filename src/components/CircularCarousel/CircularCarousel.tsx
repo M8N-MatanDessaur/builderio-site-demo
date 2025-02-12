@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './CircularCarousel.module.css'
 
 export interface CarouselCard {
@@ -37,16 +37,70 @@ export function CircularCarousel({
   textColor,
 }: CircularCarouselProps) {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
+  const [startX, setStartX] = useState(0)
+  const [currentX, setCurrentX] = useState(0)
   const totalCards = cards.length || 5
+  const carouselRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (autoRotate && cards.length > 0) {
-      const interval = setInterval(() => {
-        setActiveIndex((current) => (current + 1) % totalCards)
+    let intervalId: NodeJS.Timeout | null = null
+    if (autoRotate && !isDragging) {
+      intervalId = setInterval(() => {
+        handleNext()
       }, rotationInterval)
-      return () => clearInterval(interval)
     }
-  }, [autoRotate, totalCards, rotationInterval, cards.length])
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+    }
+  }, [autoRotate, rotationInterval, isDragging])
+
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev + 1) % totalCards)
+  }
+
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev - 1 + totalCards) % totalCards)
+  }
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setIsDragging(true)
+    setStartX(e.touches[0].clientX)
+    setCurrentX(e.touches[0].clientX)
+  }
+
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsDragging(true)
+    setStartX(e.clientX)
+    setCurrentX(e.clientX)
+  }
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return
+    setCurrentX(e.touches[0].clientX)
+  }
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return
+    setCurrentX(e.clientX)
+  }
+
+  const handleDragEnd = () => {
+    if (!isDragging) return
+    
+    const diff = currentX - startX
+    const threshold = 50 // minimum distance for swipe
+
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        handlePrev()
+      } else {
+        handleNext()
+      }
+    }
+
+    setIsDragging(false)
+  }
 
   const getCardStyle = (index: number) => {
     let position = (index - activeIndex) % totalCards
@@ -79,14 +133,6 @@ export function CircularCarousel({
       pointerEvents: position === 0 ? 'auto' as const : 'none' as const,
       filter: position === 0 ? 'none' : 'brightness(0.95)'
     }
-  }
-
-  const handlePrevious = () => {
-    setActiveIndex((current) => (current - 1 + totalCards) % totalCards)
-  }
-
-  const handleNext = () => {
-    setActiveIndex((current) => (current + 1) % totalCards)
   }
 
   const handleCardClick = (card: CarouselCard) => {
@@ -166,29 +212,39 @@ export function CircularCarousel({
 
   return (
     <div className={styles.carouselContainer}>
-      <div className={styles.carousel}>
+      <div 
+        ref={carouselRef}
+        className={styles.carousel}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleDragEnd}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleDragEnd}
+        onMouseLeave={handleDragEnd}
+      >
         <div className={styles.carouselStage}>
           {cardElements}
         </div>
-        <button 
-          className={`${styles.navArrow} ${styles.prevArrow}`}
-          onClick={handlePrevious}
-          aria-label="Previous slide"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M15 18l-6-6 6-6" />
-          </svg>
-        </button>
-        <button 
-          className={`${styles.navArrow} ${styles.nextArrow}`}
-          onClick={handleNext}
-          aria-label="Next slide"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </button>
       </div>
+      <button 
+        className={`${styles.navArrow} ${styles.prevArrow}`}
+        onClick={handlePrev}
+        aria-label="Previous slide"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <button 
+        className={`${styles.navArrow} ${styles.nextArrow}`}
+        onClick={handleNext}
+        aria-label="Next slide"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
     </div>
   )
 }
