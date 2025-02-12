@@ -36,7 +36,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  perspective: 1200px;
+  perspective: 3000px;
 }
 
 .card {
@@ -192,16 +192,6 @@
   right: 5px;
 }
 
-@media (max-width: 1024px) {
-  .prevArrow {
-    left: 0;
-  }
-
-  .nextArrow {
-    right: 0;
-  }
-}
-
 .placeholderContent {
   height: 100%;
   display: flex;
@@ -238,6 +228,17 @@
   .carouselContainer {
     width: 100%;
   }
+  .prevArrow {
+    left: 0;
+  }
+
+  .nextArrow {
+    right: 0;
+  }
+
+  .carouselStage {
+    perspective: 2000px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -246,6 +247,10 @@
     padding: 0 1rem;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .carouselStage {
+    perspective: 1000px;
   }
 
   .card {
@@ -279,5 +284,11 @@
   
   .carouselContainer {
     touch-action: pan-x pinch-zoom;
+  }
+}
+
+@media (max-width: 640px) {
+  .carouselStage {
+    perspective: 333px;
   }
 }
