@@ -7,6 +7,7 @@ import './components/FeaturesGrid/FeaturesGrid.registry';
 import './components/TestimonialGrid/TestimonialGrid.registry';
 import './components/LogoCloud/LogoCloud.registry';
 import './components/CTABanner/CTABanner.registry';
+import './components/CircularCarousel/CircularCarousel.registry';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
