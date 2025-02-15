@@ -1,59 +1,70 @@
 import { Builder } from '@builder.io/react';
 import MasonryGallery from './MasonryGallery';
+import {
+  titleField,
+  descriptionField,
+  imageField,
+  backgroundColorField,
+  textColorField,
+  createItemsField,
+  gapField,
+  paddingField
+} from '../../utils/common-fields';
+
+const defaultGalleryImages = [
+  {
+    image: '',
+    alt: 'Gallery Image 1',
+    title: 'Image Title',
+    description: 'Image description'
+  },
+  {
+    image: '',
+    alt: 'Gallery Image 2',
+    title: 'Image Title',
+    description: 'Image description'
+  },
+  {
+    image: '',
+    alt: 'Gallery Image 3',
+    title: 'Image Title',
+    description: 'Image description'
+  }
+];
 
 Builder.registerComponent(MasonryGallery, {
   name: 'MasonryGallery',
   inputs: [
     {
-      name: 'images',
-      type: 'list',
-      defaultValue: [
+      ...createItemsField([
         {
-          image: '',
-          alt: 'Gallery Image 1',
-          title: 'Image Title',
-          description: 'Image description'
-        },
-        {
-          image: '',
-          alt: 'Gallery Image 2',
-          title: 'Image Title',
-          description: 'Image description'
-        },
-        {
-          image: '',
-          alt: 'Gallery Image 3',
-          title: 'Image Title',
-          description: 'Image description'
-        }
-      ],
-      subFields: [
-        {
-          name: 'image',
-          type: 'file',
-          allowedFileTypes: ['jpeg', 'jpg', 'png', 'webp'],
+          ...imageField,
           required: true,
-          helperText: 'Upload an image file'
+          helperText: 'Upload an image for the gallery'
         },
         {
           name: 'alt',
-          type: 'string',
+          friendlyName: 'Alt Text',
+          type: 'text',
           helperText: 'Alternative text for accessibility'
         },
         {
+          ...titleField,
           name: 'title',
-          type: 'string',
+          required: false,
           helperText: 'Image title (optional)'
         },
         {
-          name: 'description',
-          type: 'string',
+          ...descriptionField,
+          required: false,
           helperText: 'Image description (optional)'
         }
-      ],
+      ], 'Gallery Images'),
+      defaultValue: defaultGalleryImages
     },
     {
       name: 'columns',
+      friendlyName: 'Number of Columns',
       type: 'number',
       defaultValue: 3,
       min: 1,
@@ -61,7 +72,7 @@ Builder.registerComponent(MasonryGallery, {
       helperText: 'Number of columns in the grid'
     },
     {
-      name: 'gap',
+      ...gapField,
       type: 'number',
       defaultValue: 16,
       min: 0,
@@ -70,12 +81,14 @@ Builder.registerComponent(MasonryGallery, {
     },
     {
       name: 'maxWidth',
-      type: 'string',
+      friendlyName: 'Maximum Width',
+      type: 'text',
       defaultValue: '1440px',
       helperText: 'Maximum width of the gallery'
     },
     {
       name: 'hoverEffect',
+      friendlyName: 'Hover Effect',
       type: 'enum',
       defaultValue: 'zoom',
       enum: ['zoom', 'lift', 'darken', 'none'],
@@ -83,6 +96,7 @@ Builder.registerComponent(MasonryGallery, {
     },
     {
       name: 'rounded',
+      friendlyName: 'Border Radius',
       type: 'enum',
       defaultValue: 'medium',
       enum: ['none', 'small', 'medium', 'large'],
@@ -90,27 +104,19 @@ Builder.registerComponent(MasonryGallery, {
     },
     {
       name: 'showCaptions',
+      friendlyName: 'Show Captions',
       type: 'boolean',
       defaultValue: true,
       helperText: 'Show image titles and descriptions on hover'
     },
+    backgroundColorField,
     {
-      name: 'backgroundColor',
-      type: 'color',
-      defaultValue: 'transparent',
-      helperText: 'Background color of the gallery'
+      ...textColorField,
+      name: 'captionColor',
+      friendlyName: 'Caption Color',
+      defaultValue: '#ffffff',
+      helperText: 'Text color for image captions'
     },
-    {
-      name: 'textColor',
-      type: 'color',
-      defaultValue: '#000000',
-      helperText: 'Color of the text in captions'
-    },
-    {
-      name: 'accentColor',
-      type: 'color',
-      defaultValue: 'var(--accent)',
-      helperText: 'Accent color for hover effects'
-    }
-  ],
+    paddingField
+  ]
 });

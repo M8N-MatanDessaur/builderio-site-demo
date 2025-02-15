@@ -1,104 +1,85 @@
 import { Builder } from '@builder.io/react';
 import { FeaturesGrid } from './FeaturesGrid';
+import {
+  titleField,
+  descriptionField,
+  backgroundColorField,
+  textColorField,
+  urlField,
+  createItemsField,
+  gapField,
+  paddingField
+} from '../../utils/common-fields';
 
 Builder.registerComponent(FeaturesGrid, {
   name: 'Features Grid',
   inputs: [
+    createItemsField([
+      {
+        name: 'icon',
+        type: 'string',
+        enum: ['rocket', 'brush', 'tools', 'device'],
+        defaultValue: 'rocket',
+        helperText: 'Choose an icon for this feature',
+      },
+      {
+        ...titleField,
+        defaultValue: 'Feature Title',
+        helperText: 'Title of this feature'
+      },
+      {
+        ...descriptionField,
+        defaultValue: 'Feature description goes here',
+        helperText: 'Description of this feature'
+      },
+      {
+        name: 'color',
+        type: 'color',
+        defaultValue: '#0070f3',
+        helperText: 'Accent color for this feature'
+      },
+      {
+        ...urlField,
+        defaultValue: '#',
+        helperText: 'Link to feature details page or section'
+      }
+    ], 'Features'),
     {
-      name: 'features',
-      type: 'list',
-      subFields: [
-        {
-          name: 'icon',
-          type: 'string',
-          enum: ['rocket', 'brush', 'tools', 'device'],
-          defaultValue: 'rocket',
-          helperText: 'Choose an icon for this feature',
-        },
-        {
-          name: 'title',
-          type: 'string',
-          defaultValue: 'Feature Title',
-        },
-        {
-          name: 'description',
-          type: 'string',
-          defaultValue: 'Feature description goes here',
-        },
-        {
-          name: 'color',
-          type: 'color',
-        },
-        {
-          name: 'link',
-          type: 'string',
-          defaultValue: '#',
-          helperText: 'Link to feature details page or section',
-        },
-      ],
-      defaultValue: [
-        {
-          icon: 'rocket',
-          title: 'Lightning Fast',
-          description: 'Optimized for speed and performance across all devices',
-          link: '/performance',
-        },
-        {
-          icon: 'brush',
-          title: 'Beautiful Design',
-          description: 'Stunning visuals that capture attention and engage users',
-          link: '/design',
-        },
-        {
-          icon: 'tools',
-          title: 'Easy to Use',
-          description: 'Intuitive interface that anyone can master quickly',
-          link: '/usability',
-        },
-        {
-          icon: 'device',
-          title: 'Responsive',
-          description: 'Perfect experience on any screen size or device',
-          link: '/responsive',
-        },
-      ],
-    },
-    {
-      name: 'backgroundColor',
-      type: 'color',
-      defaultValue: '#ffffff',
-    },
-    {
-      name: 'textColor',
-      type: 'color',
-      defaultValue: '#000000',
-    },
-    {
-      name: 'accentColor',
-      type: 'color',
-      defaultValue: '#007AFF',
-    },
-    {
-      name: 'title',
-      type: 'string',
+      ...titleField,
       defaultValue: 'Why Choose Us',
+      helperText: 'Main heading for the features section'
     },
     {
       name: 'subtitle',
-      type: 'string',
+      friendlyName: 'Subtitle',
+      type: 'text',
       defaultValue: 'Discover what makes us different',
+      helperText: 'Supporting text below the main heading'
+    },
+    backgroundColorField,
+    textColorField,
+    {
+      name: 'accentColor',
+      friendlyName: 'Accent Color',
+      type: 'color',
+      defaultValue: '#0070f3',
+      helperText: 'Primary accent color for icons and highlights'
     },
     {
       name: 'headingColor',
+      friendlyName: 'Heading Color',
       type: 'color',
       defaultValue: 'var(--secondary)',
       helperText: 'Color of the main heading'
     },
     {
       name: 'subtitleColor',
+      friendlyName: 'Subtitle Color',
       type: 'color',
       defaultValue: 'var(--text)',
       helperText: 'Color of the subtitle text'
     },
-  ],
+    gapField,
+    paddingField
+  ]
 });

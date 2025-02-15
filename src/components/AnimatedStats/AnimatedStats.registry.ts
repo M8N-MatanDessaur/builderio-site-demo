@@ -1,5 +1,6 @@
 import { Builder } from '@builder.io/react';
 import { AnimatedStats } from './AnimatedStats';
+import { backgroundColorField, textColorField, animationDurationField } from '../../utils/common-fields';
 
 Builder.registerComponent(AnimatedStats, {
   name: 'AnimatedStats',
@@ -34,41 +35,48 @@ Builder.registerComponent(AnimatedStats, {
         {
           name: 'number',
           type: 'number',
-          defaultValue: 0
+          defaultValue: 0,
+          helperText: 'The number to animate to'
         },
         {
           name: 'label',
           type: 'string',
-          defaultValue: 'Stat Label'
+          defaultValue: 'Stat Label',
+          helperText: 'Label describing the statistic'
         },
         {
           name: 'prefix',
-          type: 'string'
+          type: 'string',
+          helperText: 'Optional prefix before the number (e.g., $, €)'
         },
         {
           name: 'suffix',
-          type: 'string'
+          type: 'string',
+          helperText: 'Optional suffix after the number (e.g., %, +)'
         },
         {
           name: 'color',
-          type: 'color'
+          type: 'color',
+          defaultValue: '#0070f3',
+          helperText: 'Color of the number'
         }
       ]
     },
+    backgroundColorField,
     {
-      name: 'backgroundColor',
-      type: 'color',
-      defaultValue: '#ffffff'
-    },
-    {
+      ...textColorField,
       name: 'numberColor',
-      type: 'color',
-      defaultValue: '#0070f3'
+      friendlyName: 'Number Color',
+      defaultValue: '#0070f3',
+      helperText: 'Color of the animated numbers'
     },
     {
+      ...textColorField,
       name: 'labelColor',
-      type: 'color',
-      defaultValue: '#666666'
-    }
+      friendlyName: 'Label Color',
+      defaultValue: '#666666',
+      helperText: 'Color of the stat labels'
+    },
+    animationDurationField
   ]
 });
