@@ -7,7 +7,7 @@ export default function MasonryGallery({
   images = [],
   columns = 3,
   gap = 16,
-  maxWidth = '1200px',
+  maxWidth = '1440px',
   hoverEffect = 'zoom',
   rounded = 'medium',
   showCaptions = true,

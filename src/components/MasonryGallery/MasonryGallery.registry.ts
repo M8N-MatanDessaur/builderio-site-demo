@@ -71,7 +71,7 @@ Builder.registerComponent(MasonryGallery, {
     {
       name: 'maxWidth',
       type: 'string',
-      defaultValue: '1200px',
+      defaultValue: '1440px',
       helperText: 'Maximum width of the gallery'
     },
     {
