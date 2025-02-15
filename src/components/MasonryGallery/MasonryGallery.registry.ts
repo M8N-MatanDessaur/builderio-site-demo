@@ -8,7 +8,11 @@ import {
   textColorField,
   createItemsField,
   gapField,
-  paddingField
+  paddingField,
+  layoutFields,
+  hoverEffectField,
+  borderRadiusField,
+  captionFields
 } from '../../utils/common-fields';
 
 const defaultGalleryImages = [
@@ -62,15 +66,7 @@ Builder.registerComponent(MasonryGallery, {
       ], 'Gallery Images'),
       defaultValue: defaultGalleryImages
     },
-    {
-      name: 'columns',
-      friendlyName: 'Number of Columns',
-      type: 'number',
-      defaultValue: 3,
-      min: 1,
-      max: 6,
-      helperText: 'Number of columns in the grid'
-    },
+    layoutFields.columns,
     {
       ...gapField,
       type: 'number',
@@ -79,44 +75,12 @@ Builder.registerComponent(MasonryGallery, {
       max: 100,
       helperText: 'Space between images (in pixels)'
     },
-    {
-      name: 'maxWidth',
-      friendlyName: 'Maximum Width',
-      type: 'text',
-      defaultValue: '1440px',
-      helperText: 'Maximum width of the gallery'
-    },
-    {
-      name: 'hoverEffect',
-      friendlyName: 'Hover Effect',
-      type: 'enum',
-      defaultValue: 'zoom',
-      enum: ['zoom', 'lift', 'darken', 'none'],
-      helperText: 'Effect when hovering over images'
-    },
-    {
-      name: 'rounded',
-      friendlyName: 'Border Radius',
-      type: 'enum',
-      defaultValue: 'medium',
-      enum: ['none', 'small', 'medium', 'large'],
-      helperText: 'Border radius of images'
-    },
-    {
-      name: 'showCaptions',
-      friendlyName: 'Show Captions',
-      type: 'boolean',
-      defaultValue: true,
-      helperText: 'Show image titles and descriptions on hover'
-    },
+    layoutFields.maxWidth,
+    hoverEffectField,
+    borderRadiusField,
+    captionFields.showCaptions,
     backgroundColorField,
-    {
-      ...textColorField,
-      name: 'captionColor',
-      friendlyName: 'Caption Color',
-      defaultValue: '#ffffff',
-      helperText: 'Text color for image captions'
-    },
+    captionFields.captionColor,
     paddingField
   ]
 });

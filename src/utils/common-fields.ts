@@ -279,3 +279,69 @@ export const gapField: Input = {
   defaultValue: "2rem",
   helperText: "Space between grid items"
 };
+
+/**
+ * Common layout fields
+ */
+export const layoutFields = {
+  maxWidth: {
+    name: "maxWidth",
+    friendlyName: "Maximum Width",
+    type: "text",
+    defaultValue: "1440px",
+    helperText: "Maximum width of the section"
+  },
+  columns: {
+    name: "columns",
+    friendlyName: "Number of Columns",
+    type: "number",
+    defaultValue: 3,
+    min: 1,
+    max: 6,
+    helperText: "Number of columns in the grid"
+  }
+};
+
+/**
+ * Common hover effect fields
+ */
+export const hoverEffectField: Input = {
+  name: "hoverEffect",
+  friendlyName: "Hover Effect",
+  type: "enum",
+  defaultValue: "zoom",
+  enum: ["zoom", "lift", "darken", "none"],
+  helperText: "Effect when hovering over elements"
+};
+
+/**
+ * Common border radius field
+ */
+export const borderRadiusField: Input = {
+  name: "rounded",
+  friendlyName: "Border Radius",
+  type: "enum",
+  defaultValue: "medium",
+  enum: ["none", "small", "medium", "large"],
+  helperText: "Border radius of elements"
+};
+
+/**
+ * Common caption fields
+ */
+export const captionFields = {
+  showCaptions: {
+    name: "showCaptions",
+    friendlyName: "Show Captions",
+    type: "boolean",
+    defaultValue: true,
+    helperText: "Show captions on elements"
+  },
+  captionColor: {
+    ...textColorField,
+    name: "captionColor",
+    friendlyName: "Caption Color",
+    defaultValue: "#ffffff",
+    helperText: "Text color for captions"
+  }
+};
