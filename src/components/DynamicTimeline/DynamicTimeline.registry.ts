@@ -33,6 +33,16 @@ Builder.registerComponent(DynamicTimeline, {
           type: 'file',
           allowedFileTypes: ['jpeg', 'jpg', 'png', 'webp'],
           helperText: 'Optional image for the timeline event'
+        },
+        {
+          name: 'ctaText',
+          type: 'string',
+          helperText: 'Text for the call-to-action button (optional)'
+        },
+        {
+          name: 'ctaUrl',
+          type: 'url',
+          helperText: 'URL for the call-to-action button (optional)'
         }
       ]
     },

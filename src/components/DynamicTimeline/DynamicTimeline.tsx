@@ -64,7 +64,7 @@ export default function DynamicTimeline({
     <div className={className} style={containerStyle}>
       <div className={styles.header}>
         <h2>{title}</h2>
-        <div dangerouslySetInnerHTML={{ __html: description }} />
+        <div className={styles.headerDescription} dangerouslySetInnerHTML={{ __html: description }} />
       </div>
       
       <motion.div 
@@ -86,10 +86,8 @@ export default function DynamicTimeline({
             transition={{ duration: 0.8, delay: index === 0 ? 0 : 0.1 }}
           >
             <div className={`${styles.timelineContent} ${index % 2 === 0 ? styles.left : styles.right}`}>
-              <div className={styles.timelineDot} />
               <motion.div 
                 className={styles.timelineCard}
-                whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {item.image && (
@@ -109,6 +107,11 @@ export default function DynamicTimeline({
                     className={styles.description}
                     dangerouslySetInnerHTML={{ __html: item.description }}
                   />
+                  {item.ctaText && item.ctaUrl && (
+                    <a href={item.ctaUrl} className={styles.cta} target="_blank" rel="noopener noreferrer">
+                      {item.ctaText}
+                    </a>
+                  )}
                 </div>
               </motion.div>
             </div>

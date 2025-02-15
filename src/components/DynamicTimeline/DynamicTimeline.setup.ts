@@ -29,7 +29,9 @@ export const defaultTimelineItems: TimelineItem[] = [
     description: '<p>Embarked on our journey with a vision to revolutionize the industry. Started with a small team of dedicated innovators.</p>',
     backgroundColor: "#ffffff",
     titleColor: "#111827",
-    textColor: "#4B5563"
+    textColor: "#4B5563",
+    ctaText: "Learn More",
+    ctaUrl: "#foundation"
   },
   {
     date: '2021',
@@ -37,7 +39,9 @@ export const defaultTimelineItems: TimelineItem[] = [
     description: '<p>Expanded our reach and introduced groundbreaking solutions. <strong>Doubled</strong> our team size and client base.</p>',
     backgroundColor: "#ffffff",
     titleColor: "#111827",
-    textColor: "#4B5563"
+    textColor: "#4B5563",
+    ctaText: "View Case Study",
+    ctaUrl: "#growth"
   },
   {
     date: '2022',
@@ -45,7 +49,9 @@ export const defaultTimelineItems: TimelineItem[] = [
     description: '<p>Achieved international acclaim and established presence in <em>multiple</em> markets. Launched our flagship product.</p>',
     backgroundColor: "#ffffff",
     titleColor: "#111827",
-    textColor: "#4B5563"
+    textColor: "#4B5563",
+    ctaText: "See Awards",
+    ctaUrl: "#awards"
   },
   {
     date: "2023",

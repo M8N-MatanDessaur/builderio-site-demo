@@ -97,7 +97,7 @@ Builder.registerComponent(FeaturesGrid, {
     {
       name: 'subtitleColor',
       type: 'color',
-      defaultValue: 'var(--primary)',
+      defaultValue: 'var(--text)',
       helperText: 'Color of the subtitle text'
     },
   ],
