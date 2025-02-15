@@ -18,10 +18,10 @@ export default function DynamicTimeline({
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.2, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2], [0.5, 1]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -36,13 +36,20 @@ export default function DynamicTimeline({
         });
       },
       {
-        threshold: 0.2,
-        rootMargin: '-50px'
+        threshold: 0.3,
+        rootMargin: '0px'
       }
     );
 
     const timelineItems = document.querySelectorAll('.timeline-item');
     timelineItems.forEach(item => observer.observe(item));
+
+    // Set first item visible by default
+    setIsVisible(prev => {
+      const newState = [...prev];
+      newState[0] = true;
+      return newState;
+    });
 
     return () => observer.disconnect();
   }, [items]);
@@ -71,12 +78,12 @@ export default function DynamicTimeline({
             key={index}
             data-index={index}
             className={`${styles.timelineItem} timeline-item`}
-            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+            initial={{ opacity: index === 0 ? 1 : 0, x: index % 2 === 0 ? -50 : 50 }}
             animate={{
               opacity: isVisible[index] ? 1 : 0,
               x: isVisible[index] ? 0 : (index % 2 === 0 ? -50 : 50)
             }}
-            transition={{ duration: 0.8, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: index === 0 ? 0 : 0.1 }}
           >
             <div className={`${styles.timelineContent} ${index % 2 === 0 ? styles.left : styles.right}`}>
               <div className={styles.timelineDot} />
