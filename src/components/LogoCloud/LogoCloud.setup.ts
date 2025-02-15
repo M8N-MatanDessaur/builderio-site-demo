@@ -90,8 +90,8 @@ export const defaultProps: LogoCloudProps = {
   textColor: "var(--primary)",
   title: "Trusted by Leading Companies",
   subtitle: "Join thousands of companies who trust our platform",
-  headingColor: "var(--secondary)",
-  subtitleColor: "var(--text-muted)",
+  headingColor: "var(--accent)",
+  subtitleColor: "var(--text)",
   grayscale: true,
   className: ""
 } as const;
