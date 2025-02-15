@@ -5,8 +5,8 @@
  * @property {React.ReactNode} children - Page content
  */
 
-import "./(Styles)/reset.css";
-import "./(Styles)/brand.css";
+import "./assets/reset.css";
+import "./assets/brand.css";
 import Header from "@/components/Header/Header";
 
 export const metadata = {
