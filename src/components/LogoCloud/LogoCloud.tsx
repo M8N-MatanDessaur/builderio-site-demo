@@ -25,7 +25,6 @@ export function LogoCloud({
   });
 
   const getImageUrl = (logo: any) => {
-    console.log('Processing logo:', logo);
     if (typeof logo.image?.image === 'string') {
       return logo.image.image;
     }
@@ -38,7 +37,6 @@ export function LogoCloud({
 
   const renderLogo = (logo: any, index: number) => {
     const imageUrl = getImageUrl(logo);
-    console.log('Rendering logo:', logo.name, 'with URL:', imageUrl);
     
     return (
     <div 
@@ -66,7 +64,6 @@ export function LogoCloud({
             }}
             loading="lazy"
             onError={(e) => {
-              console.log('Image failed to load:', imageUrl);
               const target = e.target as HTMLImageElement;
               target.src = `https://via.placeholder.com/150x50?text=${encodeURIComponent(logo.name)}`;
             }}
@@ -83,7 +80,6 @@ export function LogoCloud({
           }}
           loading="lazy"
           onError={(e) => {
-            console.log('Image failed to load:', imageUrl);
             const target = e.target as HTMLImageElement;
             target.src = `https://via.placeholder.com/150x50?text=${encodeURIComponent(logo.name)}`;
           }}

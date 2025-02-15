@@ -30,7 +30,6 @@ const ClientPage = ({
 
   useEffect(() => {
     if (data) {
-      console.log('navigation', data);
     }
     if (fetchError) {
       console.error('Navigation error:', fetchError);

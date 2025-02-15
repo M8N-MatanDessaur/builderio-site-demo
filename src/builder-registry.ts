@@ -10,6 +10,7 @@ import './components/CTABanner/CTABanner.registry';
 import './components/CircularCarousel/CircularCarousel.registry';
 import './components/DynamicTimeline/DynamicTimeline.registry';
 import './components/FAQAccordion/FAQAccordion.registry';
+import './components/Form/Form.registry';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -27,6 +28,7 @@ Builder.register("editor.settings", {
       // === Brand Colors ===
       { name: "Primary", value: "var(--primary, #10106a)" }, // Body text color
       { name: "Secondary", value: "var(--secondary, #2323eb)" }, // Heading / Accent color
+      { name: "Accent", value: "var(--accent, #0070F3)" },
       { name: "Background Section", value: "var(--background-section, #f5f5ff)" },
       // === Feedback Colors ===
       { name: "Success", value: "var(--success, #57a773)" },

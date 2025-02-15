@@ -1,0 +1,144 @@
+.formContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 4px;
+  background: var(--background);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.header h2 {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.header p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fieldWrapper.full {
+  grid-column: 1 / -1;
+}
+
+.fieldWrapper.half {
+  grid-column: span 6 / span 6;
+}
+
+.fieldWrapper.third {
+  grid-column: span 4 / span 4;
+}
+
+.label {
+  font-weight: 500;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  color: var(--accent);
+}
+
+.input,
+.textarea,
+.select {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-color, #e5e7eb);
+  border-radius: 4px;
+  background-color: var(--background);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.2s;
+  width: 100%;
+  height: 70px;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-light, rgba(var(--accent-rgb), 0.2));
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.helpText {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.error {
+  color: var(--error, #ef4444);
+  font-size: 0.875rem;
+}
+
+.submitButton {
+  background-color: var(--accent);
+  color: white;
+  font-weight: 600;
+  padding:0.75rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 1rem;
+  width: 100%;
+  justify-self: center;
+  height: 70px;
+}
+
+.submitButton:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.successMessage {
+  color: var(--success, #22c55e);
+  text-align: center;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.errorMessage {
+  color: var(--error, #ef4444);
+  text-align: center;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.loading {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 2rem;
+}
