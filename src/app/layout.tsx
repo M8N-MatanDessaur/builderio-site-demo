@@ -8,6 +8,7 @@
 import "./assets/reset.css";
 import "./assets/brand.css";
 import Header from "@/components/Header/Header";
+import { BackToTop } from "@/components/BackToTop/BackToTop";
 
 export const metadata = {
   title: "Default Page Title",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main>
+        <BackToTop />
       </body>
     </html>
   );
