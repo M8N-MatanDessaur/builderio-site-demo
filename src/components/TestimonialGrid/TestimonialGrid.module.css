@@ -111,7 +111,7 @@
 }
 
 .testimonialText {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-large);
   line-height: 1.6;
   opacity: 0.85;
   margin: 0;
