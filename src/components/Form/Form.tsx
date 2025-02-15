@@ -34,7 +34,6 @@ export default function Form({
   padding = 32,
   className = ''
 }: FormProps) {
-  console.log('Form props:', { selectedForm, backgroundColor, textColor, accentColor });
   
   const [formData, setFormData] = useState<FormData | null>(null);
   const [formState, setFormState] = useState<Record<string, any>>({});
@@ -45,17 +44,14 @@ export default function Form({
   useEffect(() => {
     async function fetchForm() {
       if (!selectedForm?.value?.data) {
-        console.log('No form data found in selectedForm');
         setLoading(false);
         return;
       }
 
       try {
         setLoading(true);
-        console.log('Form props:', { selectedForm });
         
         const formContent = selectedForm.value.data;
-        console.log('Form content:', formContent);
         
         const processedForm: FormData = {
           name: formContent.formName || 'Untitled Form',
@@ -100,7 +96,6 @@ export default function Form({
           }) : []
         };
 
-        console.log('Processed form data:', processedForm);
         setFormData(processedForm);
 
         // Initialize form state with default values
@@ -208,16 +203,12 @@ export default function Form({
   };
 
   if (loading) {
-    console.log('Form is loading');
     return <div className={styles.loading}>Loading form...</div>;
   }
 
   if (!formData) {
-    console.log('No form data available');
     return <div className={styles.error}>Form not found</div>;
   }
-
-  console.log('Rendering form with data:', formData);
 
   const containerStyle = {
     backgroundColor,

@@ -1,0 +1,144 @@
+.galleryContainer {
+  width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.masonryGrid {
+  display: grid;
+  gap: var(--gap, 1rem);
+  grid-template-columns: repeat(var(--columns, 3), 1fr);
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  break-inside: avoid;
+  margin-bottom: var(--gap, 1rem);
+  transition: all 0.3s ease;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--background-section);
+  border-radius: var(--border-radius, 0);
+  aspect-ratio: 1;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--grey-light, #f8f6f3);
+  color: var(--grey-dark, #868686);
+  font-size: 0.9rem;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+/* Hover Effects */
+.hoverZoom .image:hover {
+  transform: scale(1.05);
+}
+
+.hoverLift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.hoverDarken::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+}
+
+.hoverDarken:hover::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Caption Styles */
+.caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.imageContainer:hover .caption {
+  opacity: 1;
+}
+
+.caption h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.caption p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Border Radius Variants */
+.roundedSmall {
+  --border-radius: 4px;
+}
+
+.roundedMedium {
+  --border-radius: 8px;
+}
+
+.roundedLarge {
+  --border-radius: 16px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .masonryGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .galleryContainer {
+    padding: 0.5rem;
+  }
+  
+  .masonryGrid {
+    gap: 0.5rem;
+  }
+}
