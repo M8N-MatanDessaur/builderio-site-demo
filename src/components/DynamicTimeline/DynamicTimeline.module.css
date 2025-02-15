@@ -21,6 +21,7 @@
   padding: 2rem 0;
   max-width: 1200px;
   margin: 0 auto;
+  overflow-x: hidden;
   --dot-size: 1rem;
   --dot-ripple-size: 3rem;
 }
@@ -77,33 +78,7 @@
   height: var(--dot-size);
 }
 
-.left .timelineDot::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  width: 3rem;
-  height: 2px;
-  background: var(--accent);
-  opacity: 0.2;
-  border-radius: 0;
-  transform: translateY(-50%);
-  animation: none;
-}
 
-.right .timelineDot::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  right: 100%;
-  width: 3rem;
-  height: 2px;
-  background: var(--accent);
-  opacity: 0.2;
-  border-radius: 0;
-  transform: translateY(-50%);
-  animation: none;
-}
 
 .timelineDot::before {
   animation: ripple 2s ease-out infinite;
@@ -161,7 +136,7 @@
 }
 
 .left .timelineDot::after {
-  left: 100%;
+  left: 50%;
 }
 
 .right .timelineDot::after {
@@ -196,10 +171,6 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.3s ease-in-out;
-}
-
-.timelineCard:hover .image {
-  transform: scale(1.05);
 }
 
 .cardContent {
@@ -260,7 +231,6 @@
 
   .left .timelineDot::after,
   .right .timelineDot::after {
-    left: 100%;
     right: auto;
     width: 2rem;
   }
@@ -293,7 +263,7 @@
 
   .left .timelineDot,
   .right .timelineDot {
-    left: -1.5rem;
+    left: -1.75rem;
   }
 
   .left .timelineDot::after,
