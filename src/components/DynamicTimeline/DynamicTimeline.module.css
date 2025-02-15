@@ -63,16 +63,12 @@
 .timelineCard {
   background-color: #fff;
   border-radius: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--grey);
   overflow: hidden;
   position: relative;
   transition: transform 0.3s ease-in-out;
   width: 100%;
   max-width: 500px;
-}
-
-.timelineCard:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .imageWrapper {

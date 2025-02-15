@@ -45,9 +45,8 @@
   position: relative;
   height: 100%;
   padding: 32px;
-  background: #ffffff;
   border-radius: var(--border-radius-large);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--grey);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(20px);
@@ -81,7 +80,6 @@
 
 .feature:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
 }
 
 .feature:hover::before {
