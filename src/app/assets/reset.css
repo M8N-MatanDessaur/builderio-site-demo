@@ -36,6 +36,7 @@
     text-rendering: optimizeSpeed;
     scroll-behavior: smooth;
     font-family: var(--font-body);
+    overflow-x: hidden;
   }
   
   /* 4. Remove list styles on ul, ol elements */
@@ -167,4 +168,8 @@
     isolation: isolate;
   }
   
-  
+  /* RESET MAPBOX */
+  .mapboxgl-ctrl{
+    all: unset;
+    display: none !important;
+  }
