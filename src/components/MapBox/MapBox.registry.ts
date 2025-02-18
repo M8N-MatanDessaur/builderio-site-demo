@@ -68,9 +68,28 @@ Builder.registerComponent(MapBox, {
         { label: 'Tilted Forward', value: 'tilted' },
         { label: 'Tilted Right', value: 'tilted-right' },
         { label: 'Tilted Left', value: 'tilted-left' },
-        { label: 'Globe View', value: 'globe' }
+        { label: 'Globe View', value: 'globe' },
+        { label: 'Custom', value: 'custom' }
       ],
       helperText: 'Choose the map perspective style'
+    },
+    {
+      name: 'customPitch',
+      type: 'number',
+      defaultValue: 0,
+      min: 0,
+      max: 85,
+      helperText: 'Custom pitch angle (0-85 degrees). Only applies when view style is set to Custom.',
+      showIf: 'options.get("viewStyle") === "custom"'
+    },
+    {
+      name: 'customBearing',
+      type: 'number',
+      defaultValue: 0,
+      min: -180,
+      max: 180,
+      helperText: 'Custom bearing angle (-180 to 180 degrees). Only applies when view style is set to Custom.',
+      showIf: 'options.get("viewStyle") === "custom"'
     },
     {
       name: 'initialZoom',

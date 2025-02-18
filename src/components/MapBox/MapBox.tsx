@@ -7,6 +7,8 @@ export function MapBox({
   markers = defaultProps.markers!,
   mapStyle = defaultProps.mapStyle as MapStyle,
   viewStyle = defaultProps.viewStyle,
+  customPitch = 0,
+  customBearing = 0,
   initialZoom = defaultProps.initialZoom,
   initialCenter = defaultProps.initialCenter!,
   showPopupOnHover = defaultProps.showPopupOnHover,
@@ -21,7 +23,9 @@ export function MapBox({
 
     mapboxgl.accessToken = MAPBOX_CONFIG.apiKey;
     
-    const viewConfig = VIEW_STYLES[viewStyle || 'flat'];
+    const viewConfig = viewStyle === 'custom' 
+      ? VIEW_STYLES.custom(customPitch, customBearing)
+      : VIEW_STYLES[viewStyle || 'flat'];
     
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
@@ -71,6 +75,8 @@ export function MapBox({
     markers,
     mapStyle,
     viewStyle,
+    customPitch,
+    customBearing,
     initialZoom,
     initialCenter,
     showPopupOnHover,

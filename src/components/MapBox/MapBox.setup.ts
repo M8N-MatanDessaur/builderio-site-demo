@@ -1,7 +1,7 @@
 import { CommonComponentProps } from '@/utils/common-types';
 
 export type MapStyle = 'light' | 'dark' | 'streets' | 'satellite' | 'outdoors';
-export type ViewStyle = 'flat' | 'tilted' | 'tilted-right' | 'tilted-left' | 'globe';
+export type ViewStyle = 'flat' | 'tilted' | 'tilted-right' | 'tilted-left' | 'globe' | 'custom';
 
 export interface MapMarker {
   latitude: number;
@@ -15,6 +15,8 @@ export interface MapBoxProps extends CommonComponentProps {
   markers?: MapMarker[];
   mapStyle?: MapStyle;
   viewStyle?: ViewStyle;
+  customPitch?: number;
+  customBearing?: number;
   initialZoom?: number;
   initialCenter?: { lat: number; lng: number };
   showPopupOnHover?: boolean;
@@ -26,7 +28,8 @@ export const VIEW_STYLES = {
   tilted: { pitch: 45, bearing: 0 },
   'tilted-right': { pitch: 45, bearing: 45 },
   'tilted-left': { pitch: 45, bearing: -45 },
-  globe: { pitch: 80, bearing: 0 }
+  globe: { pitch: 80, bearing: 0 },
+  custom: (pitch: number = 0, bearing: number = 0) => ({ pitch, bearing })
 } as const;
 
 // Default markers example
