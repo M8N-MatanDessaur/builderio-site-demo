@@ -1,26 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import styles from './CircularCarousel.module.css'
-
-export interface CarouselCard {
-  title: string
-  description: string
-  image?: string
-  icon?: string
-  ctaText?: string
-  ctaUrl?: string
-  backgroundColor?: string
-  titleColor?: string
-  textColor?: string
-}
-
-export interface CircularCarouselProps {
-  cards?: CarouselCard[]
-  autoRotate?: boolean
-  rotationInterval?: number
-  backgroundColor?: string
-  titleColor?: string
-  textColor?: string
-}
+import { CarouselCard, CircularCarouselProps } from './CircularCarousel.setup'
 
 const defaultProps = {
   cards: [],
@@ -36,12 +16,19 @@ export function CircularCarousel({
   titleColor,
   textColor,
 }: CircularCarouselProps) {
+  console.log('CircularCarousel props:', { cards, autoRotate, rotationInterval, backgroundColor, titleColor, textColor });
+
   const [activeIndex, setActiveIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
   const [startX, setStartX] = useState(0)
   const [currentX, setCurrentX] = useState(0)
-  const totalCards = cards.length || 5
+  const totalCards = cards.length
   const carouselRef = useRef<HTMLDivElement>(null)
+
+  // Don't show anything if there are no cards
+  if (totalCards === 0) {
+    return null;
+  }
 
   useEffect(() => {
     let intervalId: NodeJS.Timeout | null = null
@@ -136,79 +123,70 @@ export function CircularCarousel({
   }
 
   const handleCardClick = (card: CarouselCard) => {
-    if (card.ctaUrl) {
-      window.open(card.ctaUrl, '_blank', 'noopener,noreferrer')
+    if (card.buttonLink) {
+      window.open(card.buttonLink, '_blank', 'noopener,noreferrer')
     }
   }
 
-  const renderCard = (card: CarouselCard | undefined, index: number) => {
-    const isPlaceholder = !card
-
+  const renderCard = (card: CarouselCard, index: number) => {
     return (
       <div
         key={index}
         className={styles.card}
         style={{
           ...getCardStyle(index),
-          backgroundColor: card?.backgroundColor || backgroundColor,
+          backgroundColor: card.backgroundColor || backgroundColor,
         }}
-        onClick={() => card && handleCardClick(card)}
-        role={card?.ctaUrl ? 'button' : 'article'}
-        tabIndex={card?.ctaUrl ? 0 : undefined}
+        onClick={() => handleCardClick(card)}
+        role={card.buttonLink ? 'button' : 'article'}
+        tabIndex={card.buttonLink ? 0 : undefined}
       >
-        {isPlaceholder ? (
-          <div className={styles.placeholderContent}>
-            <div className={styles.placeholderImage} />
-            <div className={styles.placeholderTitle} />
-            <div className={styles.placeholderText} />
-          </div>
-        ) : (
-          <div className={styles.cardContent}>
-            {card.image ? (
-              <div className={styles.imageWrapper}>
-                <img src={card.image} alt="" className={styles.image} />
-              </div>
-            ) : card.icon && (
-              <div className={styles.iconWrapper}>
-                <img src={card.icon} alt="" className={styles.icon} />
-              </div>
-            )}
-            <h3
-              className={styles.title}
+        <div className={styles.cardContent}>
+          {card.image && (
+            <div className={styles.imageWrapper}>
+              <img src={card.image} alt="" className={styles.image} />
+            </div>
+          )}
+          <h3
+            className={styles.title}
+            style={{
+              color: card.titleColor || titleColor,
+            }}
+          >
+            {card.title}
+          </h3>
+          <p
+            className={styles.description}
+            style={{
+              color: card.textColor || textColor,
+            }}
+            dangerouslySetInnerHTML={
+              typeof card.description === 'string' 
+                ? { __html: card.description }
+                : { __html: card.description?.blocks?.map(block => block.text).join('\n') || '' }
+            }
+          />
+          {card.buttonText && (
+            <button 
+              className={styles.cta}
+              onClick={(e) => {
+                e.stopPropagation()
+                handleCardClick(card)
+              }}
               style={{
-                color: card?.titleColor || titleColor,
+                backgroundColor: card.buttonBackgroundColor || '#0070F3',
+                color: card.buttonTextColor || '#FFFFFF'
               }}
             >
-              {card.title}
-            </h3>
-            <p
-              className={styles.description}
-              style={{
-                color: card?.textColor || textColor,
-              }}
-            >
-              {card.description}
-            </p>
-            {card.ctaText && (
-              <button 
-                className={styles.cta}
-                onClick={(e) => {
-                  e.stopPropagation()
-                  handleCardClick(card)
-                }}
-              >
-                {card.ctaText}
-              </button>
-            )}
-          </div>
-        )}
+              {card.buttonText}
+            </button>
+          )}
+        </div>
       </div>
     )
   }
 
-  const cardElements = cards.length > 0
-    ? cards.map((card, index) => renderCard(card, index))
-    : Array(5).fill(null).map((_, index) => renderCard(undefined, index))
+  const cardElements = cards.map((card, index) => renderCard(card, index))
 
   return (
     <div className={styles.carouselContainer}>

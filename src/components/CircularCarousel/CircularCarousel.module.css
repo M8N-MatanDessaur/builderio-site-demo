@@ -41,7 +41,7 @@
 
 .card {
   text-align: left;
-  padding: 1.5rem;
+  padding: 20px;
   background-color: #fff;
   position: absolute;
   width: 340px;
@@ -50,7 +50,7 @@
   top: 50%;
   transform-style: preserve-3d;
   backface-visibility: hidden;
-  border-radius: 1.5rem;
+  border-radius: 30px;
   box-shadow: 
     0 4px 6px -1px rgb(0 0 0 / 0.05),
     0 2px 4px -2px rgb(0 0 0 / 0.05),
@@ -81,14 +81,10 @@
 }
 
 .imageWrapper {
-  width: calc(100% + 3rem);
-  height: 200px;
-  margin: -1.5rem -1.5rem 0;
-  border-radius: 1.5rem 1.5rem 0 0;
+  width: 100%;
+  border-radius: 1.5rem;
   overflow: hidden;
-  background: #f9fafb;
-  position: relative;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  aspect-ratio: 1 / 1;
 }
 
 .image {

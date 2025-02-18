@@ -83,7 +83,7 @@
   
   /* 9. Provide focus outlines for accessibility */
   :focus {
-    outline: 2px solid #007377;
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
   

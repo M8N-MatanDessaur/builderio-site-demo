@@ -1,47 +1,26 @@
 import { Builder } from '@builder.io/react'
-import { CircularCarousel } from './CircularCarousel'
 
-Builder.registerComponent(CircularCarousel, {
-  name: 'Circular Carousel',
-  inputs: [
-    {
-      name: 'cards',
-      type: 'list',
-      subFields: [
-        {
-          name: 'title',
-          type: 'string',
-          defaultValue: 'Card Title'
-        },
-        {
-          name: 'description',
-          type: 'string',
-          defaultValue: 'Card description goes here'
-        },
-        {
-          name: 'icon',
-          type: 'file',
-          allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg'],
-          defaultValue: ''
-        },
-        {
-          name: 'image',
-          type: 'file',
-          allowedFileTypes: ['jpeg', 'jpg', 'png'],
-          defaultValue: ''
-        }
-      ]
-    },
-    {
-      name: 'autoRotate',
-      type: 'boolean',
-      defaultValue: true
-    },
-    {
-      name: 'rotationInterval',
-      type: 'number',
-      defaultValue: 3000,
-      helperText: 'Rotation interval in milliseconds'
-    }
-  ]
-})
+export interface CarouselCard {
+  title: string
+  description: string | { blocks: any[] }  // Support for rich text content
+  image: string
+  buttonText?: string
+  buttonLink?: string
+  backgroundColor?: string
+  titleColor?: string
+  textColor?: string
+  buttonBackgroundColor?: string
+  buttonTextColor?: string
+}
+
+export interface CircularCarouselProps {
+  cards: CarouselCard[]
+  autoRotate?: boolean
+  rotationInterval?: number
+  backgroundColor?: string
+  titleColor?: string
+  textColor?: string
+}
+
+// Re-export the component name to ensure consistency
+export const COMPONENT_NAME = 'Circular Carousel'

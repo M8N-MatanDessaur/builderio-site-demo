@@ -1,100 +1,98 @@
 import { Builder } from '@builder.io/react'
 import { CircularCarousel } from './CircularCarousel'
+import { COMPONENT_NAME } from './CircularCarousel.setup'
 import {
   titleField,
-  descriptionField,
+  textContentField,
   imageField,
   backgroundColorField,
   textColorField,
   buttonField,
   createItemsField,
-  animationDurationField
 } from '../../utils/common-fields'
 
 Builder.registerComponent(CircularCarousel, {
-  name: 'Circular Carousel',
+  name: COMPONENT_NAME,
   inputs: [
-    createItemsField([
-      {
-        ...titleField,
-        defaultValue: 'Card Title'
-      },
-      {
-        ...descriptionField,
-        defaultValue: 'Card description goes here'
-      },
-      {
-        ...imageField,
-        name: 'icon',
-        friendlyName: 'Icon',
-        allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg'],
-        helperText: 'Icon or image for the card (JPEG, PNG, or SVG)'
-      },
-      {
-        ...backgroundColorField,
-        helperText: 'Background color for this card'
-      },
-      {
-        ...textColorField,
-        name: 'titleColor',
-        friendlyName: 'Title Color',
-        defaultValue: '#111827',
-        helperText: 'Color for the card title'
-      },
-      {
-        ...textColorField,
-        defaultValue: '#4B5563',
-        helperText: 'Color for the card description'
-      },
-      {
-        ...buttonField,
-        name: 'cta',
-        friendlyName: 'Call to Action',
-        subFields: [
-          {
-            name: 'buttonText',
-            friendlyName: 'Button Text',
-            type: 'text',
-            helperText: 'Text for the call-to-action button'
-          },
-          {
-            name: 'url',
-            friendlyName: 'Button URL',
-            type: 'url',
-            helperText: 'Link for the call-to-action button'
-          }
-        ]
-      }
-    ], 'Cards'),
     {
-      ...backgroundColorField,
-      helperText: 'Default background color for all cards'
-    },
-    {
-      ...textColorField,
-      name: 'titleColor',
-      friendlyName: 'Default Title Color',
-      defaultValue: '#111827',
-      helperText: 'Default title color for all cards'
-    },
-    {
-      ...textColorField,
-      defaultValue: '#4B5563',
-      helperText: 'Default text color for all cards'
+      name: 'cards',
+      type: 'list',
+      defaultValue: [],
+      subFields: [
+        {
+          name: 'title',
+          type: 'string',
+          required: true,
+          defaultValue: 'Card Title',
+          helperText: 'Title of the card'
+        },
+        {
+          ...textContentField,
+          name: 'description',
+          required: true,
+          defaultValue: 'Card description goes here',
+          helperText: 'Description text for the card'
+        },
+        {
+          name: 'image',
+          type: 'file',
+          allowedFileTypes: ['jpeg', 'jpg', 'png'],
+          required: true,
+          helperText: 'Main image for the card'
+        },
+        {
+          name: 'buttonText',
+          type: 'string',
+          helperText: 'Text for the button (optional)'
+        },
+        {
+          name: 'buttonLink',
+          type: 'url',
+          helperText: 'URL for the button (optional)'
+        },
+        {
+          name: 'backgroundColor',
+          type: 'color',
+          defaultValue: '#ffffff',
+          helperText: 'Background color for this card'
+        },
+        {
+          name: 'titleColor',
+          type: 'color',
+          defaultValue: '#111827',
+          helperText: 'Color for the card title'
+        },
+        {
+          name: 'textColor',
+          type: 'color',
+          defaultValue: '#4B5563',
+          helperText: 'Color for the card description'
+        },
+        {
+          name: 'buttonBackgroundColor',
+          type: 'color',
+          defaultValue: '#0070F3',
+          helperText: 'Background color for the button'
+        },
+        {
+          name: 'buttonTextColor',
+          type: 'color',
+          defaultValue: '#FFFFFF',
+          helperText: 'Text color for the button'
+        }
+      ]
     },
     {
       name: 'autoRotate',
-      friendlyName: 'Auto Rotate',
       type: 'boolean',
       defaultValue: true,
       helperText: 'Enable automatic rotation of cards'
     },
     {
-      ...animationDurationField,
       name: 'rotationInterval',
-      friendlyName: 'Rotation Interval',
+      type: 'number',
       defaultValue: 3000,
-      helperText: 'Time between card rotations in milliseconds'
+      helperText: 'Rotation interval in milliseconds'
     }
   ]
 })
