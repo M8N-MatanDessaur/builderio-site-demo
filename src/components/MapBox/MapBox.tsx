@@ -33,8 +33,22 @@ export function MapBox({
       center: [initialCenter.lng, initialCenter.lat],
       zoom: initialZoom,
       pitch: viewConfig.pitch,
-      bearing: viewConfig.bearing
+      bearing: viewConfig.bearing,
+      dragRotate: false,
+      touchZoomRotate: true,
+      touchPitch: false,
+      cooperativeGestures: true,
+      gestureHandling: 'cooperative'
     });
+
+    if (map.current) {
+      const isTouchDevice = 'ontouchstart' in window;
+      if (isTouchDevice) {
+        map.current.touchZoomRotate.disableRotation();
+        map.current.dragPan.disable();
+        map.current.touchZoomRotate.enable();
+      }
+    }
 
     const addMarkers = () => {
       if (!map.current) return;
