@@ -16,7 +16,6 @@ export function CircularCarousel({
   titleColor,
   textColor,
 }: CircularCarouselProps) {
-  console.log('CircularCarousel props:', { cards, autoRotate, rotationInterval, backgroundColor, titleColor, textColor });
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
