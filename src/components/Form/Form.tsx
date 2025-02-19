@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import styles from './Form.module.css';
 import { FormProps, FormData, FormField, BuilderFormField, FieldType } from './Form.setup';
-import { builder } from '@builder.io/sdk';
+import { builder, useIsPreviewing } from '@builder.io/react';
+import FormSkeleton from './FormSkeleton';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
@@ -40,6 +41,8 @@ export default function Form({
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [loading, setLoading] = useState(true);
+
+  const isPreviewing = useIsPreviewing();
 
   useEffect(() => {
     async function fetchForm() {
@@ -202,12 +205,18 @@ export default function Form({
     }
   };
 
+  // Show skeleton in Builder preview mode
+  if (isPreviewing) {
+    return <FormSkeleton />;
+  }
+
+  // Show loading skeleton while fetching form data
   if (loading) {
-    return <div className={styles.loading}>Loading form...</div>;
+    return <FormSkeleton />;
   }
 
   if (!formData) {
-    return <div className={styles.error}>Form not found</div>;
+    return null;
   }
 
   const containerStyle = {
