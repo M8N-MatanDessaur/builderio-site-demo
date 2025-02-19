@@ -163,7 +163,7 @@
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .column:nth-child(1),
@@ -180,9 +180,5 @@
 @media (max-width: 480px) {
   .container {
     padding: 64px 16px 0;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
   }
 }
