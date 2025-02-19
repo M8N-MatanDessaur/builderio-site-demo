@@ -157,11 +157,8 @@
         top: 80px;
         left: 0;
         width: 100%;
-        background: #ffffffF0;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: #ffffff;
         padding: 16px;
-        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
         max-height: calc(100vh - 80px);
         overflow-y: auto;
     }
