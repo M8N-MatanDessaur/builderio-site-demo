@@ -13,6 +13,7 @@ import './components/FAQAccordion/FAQAccordion.registry';
 import './components/Form/Form.registry';
 import './components/MasonryGallery/MasonryGallery.registry';
 import './components/MapBox/MapBox.registry';
+import './components/PricingTiers/PricingTiers.registry';
 
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
