@@ -8,7 +8,7 @@ import { PricingTiersProps, defaultProps } from './PricingTiers.setup';
 export interface PricingTier {
   name: string;
   monthlyPrice: number;
-  yearlyPrice: number;
+  yearlyDiscount: number;
   description: string;
   features: string;
   isPopular?: boolean;
@@ -75,7 +75,11 @@ export default function PricingTiers({
             />
           </button>
           <span style={{ color: isYearly ? textColor : `${textColor}80` }}>
-            Yearly <span style={{ color: 'var(--accent)' }}>(Save 20%)</span>
+            Yearly {displayTiers.some(tier => (tier.yearlyDiscount || 0) > 0) && (
+              <span style={{ color: 'var(--accent)' }}>
+                (Save up to {Math.max(...displayTiers.map(tier => tier.yearlyDiscount || 0))}%)
+              </span>
+            )}
           </span>
         </div>
       </div>
@@ -113,7 +117,9 @@ export default function PricingTiers({
                   className={styles.priceContainer}
                 >
                   <span className={styles.price}>
-                    ${isYearly ? tier.yearlyPrice : tier.monthlyPrice}
+                    ${isYearly 
+                      ? Math.round(tier.monthlyPrice * 12 * (1 - (tier.yearlyDiscount || 0) / 100))
+                      : tier.monthlyPrice}
                   </span>
                   <span className={styles.period}>
                     /{isYearly ? 'year' : 'month'}

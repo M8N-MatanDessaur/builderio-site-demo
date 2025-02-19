@@ -3,7 +3,7 @@ import { CommonComponentProps } from '@/utils/common-types';
 export interface PricingTier {
   name: string;
   monthlyPrice: number;
-  yearlyPrice: number;
+  yearlyDiscount: number;
   description: string;
   features: string;
   isPopular?: boolean;
@@ -32,7 +32,7 @@ export const defaultTiers: PricingTier[] = [
   {
     name: 'Basic',
     monthlyPrice: 0,
-    yearlyPrice: 0,
+    yearlyDiscount: 0,
     description: 'Perfect for trying out our platform',
     features: 'Free forever\nBasic features\nCommunity support\nNo credit card required',
     isPopular: false,
@@ -44,7 +44,7 @@ export const defaultTiers: PricingTier[] = [
   {
     name: 'Pro',
     monthlyPrice: 49,
-    yearlyPrice: 490,
+    yearlyDiscount: 15,
     description: 'Everything you need to grow your business',
     features: 'All Basic features\nPriority support\nAdvanced analytics\nCustom branding\nAPI access\nUnlimited projects',
     isPopular: true,
@@ -56,7 +56,7 @@ export const defaultTiers: PricingTier[] = [
   {
     name: 'Enterprise',
     monthlyPrice: 199,
-    yearlyPrice: 1990,
+    yearlyDiscount: 15,
     description: 'Advanced features for large organizations',
     features: 'All Pro features\nDedicated support\nCustom integrations\nAdvanced security\nSLA guarantee\nTeam training\nCustom contracts',
     isPopular: false,

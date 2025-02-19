@@ -33,13 +33,15 @@ Builder.registerComponent(PricingTiers, {
           name: 'monthlyPrice',
           type: 'number',
           defaultValue: 29,
-          helperText: 'Monthly price',
+          helperText: 'Monthly price - yearly price will be calculated automatically',
         },
         {
-          name: 'yearlyPrice',
+          name: 'yearlyDiscount',
           type: 'number',
-          defaultValue: 279,
-          helperText: 'Yearly price (usually discounted)',
+          defaultValue: 0,
+          helperText: 'Percentage discount for yearly billing (e.g. 20 means 20% off)',
+          min: 0,
+          max: 100
         },
         {
           ...descriptionField,
